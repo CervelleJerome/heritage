@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Accueil</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <!-- Hero Section with Carousel -->
+        <div id="heroCarousel" class="carousel slide carousel-fade mb-5 shadow-sm rounded" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner rounded">
+                <div class="carousel-item active" data-bs-interval="5000">
+                    <a th:href="@{/enseignants}" class="text-decoration-none">
+                        <div class="bg-enseignant text-white p-5 d-flex align-items-center" style="height: 300px;">
+                            <div>
+                                <h2><i class="bi bi-mortarboard me-2"></i>Gestion des Enseignants</h2>
+                                <p class="lead">Gérez efficacement les enseignants et leurs heures supplémentaires.</p>
+                                <button class="btn btn-light">Voir les enseignants</button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="carousel-item" data-bs-interval="5000">
+                    <a th:href="@{/etudiants}" class="text-decoration-none">
+                        <div class="bg-etudiant text-white p-5 d-flex align-items-center" style="height: 300px;">
+                            <div>
+                                <h2><i class="bi bi-book me-2"></i>Gestion des Étudiants</h2>
+                                <p class="lead">Suivez les dossiers des étudiants et leurs bourses.</p>
+                                <button class="btn btn-light">Voir les étudiants</button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="carousel-item" data-bs-interval="5000">
+                    <a th:href="@{/personnels}" class="text-decoration-none">
+                        <div class="bg-personnel text-white p-5 d-flex align-items-center" style="height: 300px;">
+                            <div>
+                                <h2><i class="bi bi-person-badge me-2"></i>Gestion du Personnel</h2>
+                                <p class="lead">Administrez le personnel administratif et leurs primes.</p>
+                                <button class="btn btn-light">Voir le personnel</button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Précédent</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Suivant</span>
+            </button>
+        </div>
+
+        <!-- Quick Actions Section -->
+        <div class="card shadow-sm mb-5">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0"><i class="bi bi-lightning-charge me-2"></i>Actions Rapides</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="dropdown w-100">
+                            <button class="btn btn-primary dropdown-toggle w-100" type="button" id="addPersonDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-plus me-2"></i>Ajouter une personne
+                            </button>
+                            <ul class="dropdown-menu shadow-sm w-100" aria-labelledby="addPersonDropdown">
+                                <li><a class="dropdown-item" th:href="@{/enseignants/new}"><i class="bi bi-mortarboard me-2"></i>Ajouter un enseignant</a></li>
+                                <li><a class="dropdown-item" th:href="@{/etudiants/new}"><i class="bi bi-book me-2"></i>Ajouter un étudiant</a></li>
+                                <li><a class="dropdown-item" th:href="@{/personnels/new}"><i class="bi bi-person-badge me-2"></i>Ajouter un personnel</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#searchModal">
+                            <i class="bi bi-search me-2"></i>Recherche avancée
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-outline-dark w-100" data-bs-toggle="offcanvas" data-bs-target="#helpOffcanvas" aria-controls="helpOffcanvas">
+                            <i class="bi bi-question-circle me-2"></i>Aide & Support
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Categories Section -->
+        <h2 class="mb-4 border-bottom pb-2"><i class="bi bi-grid-3x3-gap me-2"></i>Catégories</h2>
+        <div class="row g-4 mb-5">
+            <!-- Enseignants Card -->
+            <div class="col-md-4">
+                <div class="card card-enseignant h-100 shadow-sm">
+                    <div class="card-header bg-enseignant text-white d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0"><i class="bi bi-mortarboard me-2"></i>Enseignants</h5>
+                        <span class="badge bg-light text-dark rounded-pill">Gestion</span>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <p class="card-text">Gérez les enseignants et leurs heures supplémentaires. Suivez leur activité et planifiez leurs cours.</p>
+                        <div class="mt-auto">
+                            <div class="d-grid gap-2">
+                                <a th:href="@{/enseignants}" class="btn btn-enseignant">
+                                    <i class="bi bi-list me-2"></i>Voir les enseignants
+                                </a>
+                                <a th:href="@{/enseignants/new}" class="btn btn-outline-primary">
+                                    <i class="bi bi-plus-circle me-2"></i>Ajouter un enseignant
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white">
+                        <small class="text-muted"><i class="bi bi-info-circle me-1"></i>Accédez à toutes les fonctionnalités de gestion des enseignants</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Étudiants Card -->
+            <div class="col-md-4">
+                <div class="card card-etudiant h-100 shadow-sm">
+                    <div class="card-header bg-etudiant text-white d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0"><i class="bi bi-book me-2"></i>Étudiants</h5>
+                        <span class="badge bg-light text-dark rounded-pill">Gestion</span>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <p class="card-text">Gérez les dossiers des étudiants, leurs bourses et leur parcours académique. Suivez leur progression.</p>
+                        <div class="mt-auto">
+                            <div class="d-grid gap-2">
+                                <a th:href="@{/etudiants}" class="btn btn-etudiant">
+                                    <i class="bi bi-list me-2"></i>Voir les étudiants
+                                </a>
+                                <a th:href="@{/etudiants/new}" class="btn btn-outline-success">
+                                    <i class="bi bi-plus-circle me-2"></i>Ajouter un étudiant
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white">
+                        <small class="text-muted"><i class="bi bi-info-circle me-1"></i>Accédez à toutes les fonctionnalités de gestion des étudiants</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personnel Card -->
+            <div class="col-md-4">
+                <div class="card card-personnel h-100 shadow-sm">
+                    <div class="card-header bg-personnel text-white d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0"><i class="bi bi-person-badge me-2"></i>Personnel</h5>
+                        <span class="badge bg-light text-dark rounded-pill">Gestion</span>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <p class="card-text">Gérez le personnel administratif, leurs primes et leurs responsabilités au sein de l'établissement.</p>
+                        <div class="mt-auto">
+                            <div class="d-grid gap-2">
+                                <a th:href="@{/personnels}" class="btn btn-personnel">
+                                    <i class="bi bi-list me-2"></i>Voir le personnel
+                                </a>
+                                <a th:href="@{/personnels/new}" class="btn btn-outline-danger">
+                                    <i class="bi bi-plus-circle me-2"></i>Ajouter un personnel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white">
+                        <small class="text-muted"><i class="bi bi-info-circle me-1"></i>Accédez à toutes les fonctionnalités de gestion du personnel</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0"><i class="bi bi-bar-chart me-2"></i>Statistiques</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="card bg-light">
+                                    <div class="card-body text-center">
+                                        <h1 class="display-4 enseignant-color"><i class="bi bi-mortarboard"></i></h1>
+                                        <h5>Enseignants</h5>
+                                        <p class="h2 enseignant-color" th:text="${enseignantCount}">25</p>
+                                        <p class="text-muted small">Dernière mise à jour: aujourd'hui</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card bg-light">
+                                    <div class="card-body text-center">
+                                        <h1 class="display-4 etudiant-color"><i class="bi bi-book"></i></h1>
+                                        <h5>Étudiants</h5>
+                                        <p class="h2 etudiant-color" th:text="${etudiantCount}">350</p>
+                                        <p class="text-muted small">Dernière mise à jour: aujourd'hui</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card bg-light">
+                                    <div class="card-body text-center">
+                                        <h1 class="display-4 personnel-color"><i class="bi bi-person-badge"></i></h1>
+                                        <h5>Personnel</h5>
+                                        <p class="h2 personnel-color" th:text="${personnelCount}">15</p>
+                                        <p class="text-muted small">Dernière mise à jour: aujourd'hui</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action Section -->
+        <div class="p-5 mb-5 bg-dark text-white rounded shadow">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h2>Besoin d'aide pour utiliser l'application ?</h2>
+                        <p class="lead">Consultez notre documentation complète ou contactez notre équipe de support.</p>
+                    </div>
+                    <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                        <button class="btn btn-light btn-lg me-2">
+                            <i class="bi bi-book me-2"></i>Documentation
+                        </button>
+                        <button class="btn btn-outline-light btn-lg">
+                            <i class="bi bi-headset me-2"></i>Support
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="searchModalLabel"><i class="bi bi-search me-2"></i>Recherche avancée</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="searchCategory" class="form-label">Catégorie</label>
+                                <select class="form-select" id="searchCategory">
+                                    <option value="all" selected>Toutes les catégories</option>
+                                    <option value="enseignants">Enseignants</option>
+                                    <option value="etudiants">Étudiants</option>
+                                    <option value="personnels">Personnel Administratif</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="searchTerm" class="form-label">Terme de recherche</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                    <input type="text" class="form-control" id="searchTerm" placeholder="Nom, prénom, ville...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-label">Filtres supplémentaires</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="filterActive">
+                                    <label class="form-check-label" for="filterActive">Actifs uniquement</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="filterRecent">
+                                    <label class="form-check-label" for="filterRecent">Ajoutés récemment</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="searchSort" class="form-label">Trier par</label>
+                                <select class="form-select" id="searchSort">
+                                    <option value="name">Nom</option>
+                                    <option value="date">Date d'ajout</option>
+                                    <option value="city">Ville</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-2"></i>Fermer
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        <i class="bi bi-search me-2"></i>Rechercher
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="helpOffcanvas" aria-labelledby="helpOffcanvasLabel">
+        <div class="offcanvas-header bg-dark text-white">
+            <h5 class="offcanvas-title" id="helpOffcanvasLabel"><i class="bi bi-question-circle me-2"></i>Aide & Support</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="accordion" id="helpAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Comment ajouter une personne ?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#helpAccordion">
+                        <div class="accordion-body">
+                            Pour ajouter une personne, cliquez sur le bouton <strong>Ajouter une personne</strong> dans la section Actions Rapides, puis sélectionnez le type de personne que vous souhaitez ajouter.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Comment rechercher une personne ?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#helpAccordion">
+                        <div class="accordion-body">
+                            Pour rechercher une personne, cliquez sur le bouton <strong>Recherche avancée</strong> dans la section Actions Rapides, puis remplissez les critères de recherche.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Comment modifier ou supprimer une personne ?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#helpAccordion">
+                        <div class="accordion-body">
+                            Pour modifier ou supprimer une personne, accédez d'abord à la liste correspondante (Enseignants, Étudiants ou Personnel), puis utilisez les boutons d'action disponibles pour chaque entrée.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="d-grid gap-2 mt-3">
+                <button class="btn btn-primary">
+                    <i class="bi bi-book me-2"></i>Documentation complète
+                </button>
+                <button class="btn btn-outline-secondary">
+                    <i class="bi bi-envelope me-2"></i>Contacter le support
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

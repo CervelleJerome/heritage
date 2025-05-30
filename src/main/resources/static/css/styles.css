@@ -1,0 +1,139 @@
+/* Custom styles for the application */
+
+/* Add some padding to the body for better spacing */
+body {
+    padding-bottom: 20px;
+}
+
+/* Style for the jumbotron (Bootstrap 5 doesn't have jumbotron) */
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #e9ecef;
+    border-radius: 0.3rem;
+}
+
+/* Custom card hover effect */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Active nav link */
+.nav-link.active {
+    font-weight: bold;
+}
+
+/* Custom button styles */
+.btn-custom {
+    background-color: #6f42c1;
+    color: white;
+}
+
+.btn-custom:hover {
+    background-color: #5a32a3;
+    color: white;
+}
+
+/* Enseignants - Blue Theme */
+.enseignant-color {
+    color: #0d6efd !important;
+}
+
+.bg-enseignant {
+    background-color: #0d6efd !important;
+    color: white !important;
+}
+
+.border-enseignant {
+    border-color: #0d6efd !important;
+}
+
+.btn-enseignant {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.btn-enseignant:hover {
+    background-color: #0b5ed7;
+    color: white;
+}
+
+.card-enseignant {
+    border-color: #0d6efd;
+}
+
+.card-enseignant .card-header {
+    background-color: #0d6efd;
+    color: white;
+}
+
+/* Étudiants - Green Theme */
+.etudiant-color {
+    color: #198754 !important;
+}
+
+.bg-etudiant {
+    background-color: #198754 !important;
+    color: white !important;
+}
+
+.border-etudiant {
+    border-color: #198754 !important;
+}
+
+.btn-etudiant {
+    background-color: #198754;
+    color: white;
+}
+
+.btn-etudiant:hover {
+    background-color: #157347;
+    color: white;
+}
+
+.card-etudiant {
+    border-color: #198754;
+}
+
+.card-etudiant .card-header {
+    background-color: #198754;
+    color: white;
+}
+
+/* Personnel Administratif - Red Theme */
+.personnel-color {
+    color: #dc3545 !important;
+}
+
+.bg-personnel {
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+.border-personnel {
+    border-color: #dc3545 !important;
+}
+
+.btn-personnel {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-personnel:hover {
+    background-color: #bb2d3b;
+    color: white;
+}
+
+.card-personnel {
+    border-color: #dc3545;
+}
+
+.card-personnel .card-header {
+    background-color: #dc3545;
+    color: white;
+}

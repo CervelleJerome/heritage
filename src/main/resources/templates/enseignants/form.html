@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title th:text="${enseignant.id == null ? 'Ajouter un enseignant' : 'Modifier un enseignant'}"></title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="enseignant-color">
+                <i class="bi bi-mortarboard me-2"></i>
+                <span th:text="${enseignant.id == null ? 'Ajouter un enseignant' : 'Modifier un enseignant'}"></span>
+            </h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{/}">Accueil</a></li>
+                    <li class="breadcrumb-item"><a th:href="@{/enseignants}">Enseignants</a></li>
+                    <li class="breadcrumb-item active" aria-current="page" th:text="${enseignant.id == null ? 'Ajouter' : 'Modifier'}"></li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="card border-enseignant shadow-sm">
+            <div class="card-header bg-enseignant text-white">
+                <i class="bi bi-pencil-square me-2"></i> Formulaire Enseignant
+            </div>
+            <div class="card-body">
+                <form th:action="@{/enseignants}" th:object="${enseignant}" method="post" class="p-2">
+                    <input type="hidden" th:field="*{id}" />
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="nom" class="form-label"><i class="bi bi-person me-1"></i> Nom</label>
+                            <input type="text" class="form-control border-enseignant" id="nom" th:field="*{nom}" required />
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="prenom" class="form-label"><i class="bi bi-person-vcard me-1"></i> Prénom</label>
+                            <input type="text" class="form-control border-enseignant" id="prenom" th:field="*{prenom}" required />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="rue" class="form-label"><i class="bi bi-house me-1"></i> Rue</label>
+                        <input type="text" class="form-control border-enseignant" id="rue" th:field="*{rue}" required />
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="codePostal" class="form-label"><i class="bi bi-mailbox me-1"></i> Code Postal</label>
+                            <input type="text" class="form-control border-enseignant" id="codePostal" th:field="*{codePostal}" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ville" class="form-label"><i class="bi bi-building me-1"></i> Ville</label>
+                            <input type="text" class="form-control border-enseignant" id="ville" th:field="*{ville}" required />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="telephone" class="form-label"><i class="bi bi-telephone me-1"></i> Téléphone</label>
+                        <input type="text" class="form-control border-enseignant" id="telephone" th:field="*{telephone}" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="heuresSupplementaires" class="form-label"><i class="bi bi-clock-history me-1"></i> Heures Supplémentaires</label>
+                        <input type="number" class="form-control border-enseignant" id="heuresSupplementaires" th:field="*{heuresSupplementaires}" required />
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a th:href="@{/enseignants}" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left me-1"></i> Retour
+                        </a>
+                        <button type="submit" class="btn btn-enseignant">
+                            <i class="bi bi-save me-1"></i> Enregistrer
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

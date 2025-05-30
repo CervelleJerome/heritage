@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <!-- Brand with Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <i class="bi bi-building me-2"></i>
+                <span class="d-none d-sm-inline">Gestion des Personnes</span>
+                <span class="d-inline d-sm-none">GP</span>
+            </a>
+
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Main Navigation -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- Home Link -->
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" href="/">
+                            <i class="bi bi-house-door"></i> Accueil
+                        </a>
+                    </li>
+
+                    <!-- Enseignants Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="enseignantsDropdown" role="button" 
+                           data-bs-toggle="dropdown" aria-expanded="false"
+                           th:classappend="${request.requestURI.contains('/enseignants') ? 'active enseignant-color' : ''}">
+                            <i class="bi bi-mortarboard" th:classappend="${request.requestURI.contains('/enseignants') ? 'enseignant-color' : ''}"></i> 
+                            <span th:classappend="${request.requestURI.contains('/enseignants') ? 'enseignant-color' : ''}">Enseignants</span>
+                        </a>
+                        <ul class="dropdown-menu shadow-sm" aria-labelledby="enseignantsDropdown">
+                            <li><a class="dropdown-item" th:href="@{/enseignants}"><i class="bi bi-list"></i> Liste des enseignants</a></li>
+                            <li><a class="dropdown-item" th:href="@{/enseignants/new}"><i class="bi bi-plus-circle"></i> Ajouter un enseignant</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-text"></i> Rapports</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Étudiants Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="etudiantsDropdown" role="button" 
+                           data-bs-toggle="dropdown" aria-expanded="false"
+                           th:classappend="${request.requestURI.contains('/etudiants') ? 'active etudiant-color' : ''}">
+                            <i class="bi bi-book" th:classappend="${request.requestURI.contains('/etudiants') ? 'etudiant-color' : ''}"></i> 
+                            <span th:classappend="${request.requestURI.contains('/etudiants') ? 'etudiant-color' : ''}">Étudiants</span>
+                        </a>
+                        <ul class="dropdown-menu shadow-sm" aria-labelledby="etudiantsDropdown">
+                            <li><a class="dropdown-item" th:href="@{/etudiants}"><i class="bi bi-list"></i> Liste des étudiants</a></li>
+                            <li><a class="dropdown-item" th:href="@{/etudiants/new}"><i class="bi bi-plus-circle"></i> Ajouter un étudiant</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-text"></i> Rapports</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Personnel Administratif Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="personnelsDropdown" role="button" 
+                           data-bs-toggle="dropdown" aria-expanded="false"
+                           th:classappend="${request.requestURI.contains('/personnels') ? 'active personnel-color' : ''}">
+                            <i class="bi bi-person-badge" th:classappend="${request.requestURI.contains('/personnels') ? 'personnel-color' : ''}"></i> 
+                            <span th:classappend="${request.requestURI.contains('/personnels') ? 'personnel-color' : ''}">Personnel</span>
+                        </a>
+                        <ul class="dropdown-menu shadow-sm" aria-labelledby="personnelsDropdown">
+                            <li><a class="dropdown-item" th:href="@{/personnels}"><i class="bi bi-list"></i> Liste du personnel</a></li>
+                            <li><a class="dropdown-item" th:href="@{/personnels/new}"><i class="bi bi-plus-circle"></i> Ajouter un personnel</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-text"></i> Rapports</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Dashboard Link -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-speedometer2"></i> 
+                            <span class="d-none d-md-inline">Tableau de bord</span>
+                            <span class="d-inline d-md-none">Dashboard</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Search Form - Collapsible on mobile -->
+                <div class="d-none d-lg-block me-2">
+                    <form class="d-flex">
+                        <div class="input-group">
+                            <input class="form-control" type="search" placeholder="Rechercher..." aria-label="Search">
+                            <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Mobile Search Toggle -->
+                <div class="d-lg-none mb-2">
+                    <button class="btn btn-outline-light w-100" type="button" data-bs-toggle="collapse" data-bs-target="#mobileSearch" aria-expanded="false" aria-controls="mobileSearch">
+                        <i class="bi bi-search me-2"></i> Rechercher
+                    </button>
+                    <div class="collapse mt-2" id="mobileSearch">
+                        <form class="d-flex">
+                            <div class="input-group">
+                                <input class="form-control" type="search" placeholder="Rechercher..." aria-label="Search">
+                                <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- User Menu -->
+                <div class="dropdown">
+                    <a class="btn btn-outline-light dropdown-toggle d-flex align-items-center" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle me-1"></i>
+                        <span class="d-none d-md-inline">Utilisateur</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profil</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Paramètres</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right me-2"></i>Déconnexion</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>

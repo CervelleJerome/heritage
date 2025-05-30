@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title th:text="${personnel.id == null ? 'Ajouter un personnel' : 'Modifier un personnel'}"></title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h1 class="personnel-color" th:text="${personnel.id == null ? 'Ajouter un personnel administratif' : 'Modifier un personnel administratif'}"></h1>
+
+        <form th:action="@{/personnels}" th:object="${personnel}" method="post" class="border-personnel p-4 rounded">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="mb-3">
+                <label for="nom" class="form-label">Nom</label>
+                <input type="text" class="form-control border-personnel" id="nom" th:field="*{nom}" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="prenom" class="form-label">Prénom</label>
+                <input type="text" class="form-control border-personnel" id="prenom" th:field="*{prenom}" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="rue" class="form-label">Rue</label>
+                <input type="text" class="form-control border-personnel" id="rue" th:field="*{rue}" required />
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="codePostal" class="form-label">Code Postal</label>
+                    <input type="text" class="form-control border-personnel" id="codePostal" th:field="*{codePostal}" required />
+                </div>
+                <div class="col-md-6">
+                    <label for="ville" class="form-label">Ville</label>
+                    <input type="text" class="form-control border-personnel" id="ville" th:field="*{ville}" required />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="telephone" class="form-label">Téléphone</label>
+                <input type="text" class="form-control border-personnel" id="telephone" th:field="*{telephone}" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="prime" class="form-label">Prime</label>
+                <input type="number" step="0.01" class="form-control border-personnel" id="prime" th:field="*{prime}" required />
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-personnel">Enregistrer</button>
+                <a th:href="@{/personnels}" class="btn btn-secondary">Annuler</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
