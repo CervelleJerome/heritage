@@ -356,6 +356,112 @@
                 </button>
             </div>
         </div>
+
+        <!-- JavaScript Test Section -->
+        <div class="card mt-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="card-title mb-0"><i class="bi bi-code-slash me-2"></i> Test JavaScript</h5>
+            </div>
+            <div class="card-body">
+                <p>Si vous rencontrez des problèmes avec l'application, cliquez sur le bouton ci-dessous pour tester si JavaScript fonctionne correctement :</p>
+                <button id="testJsButton" class="btn btn-primary" onclick="window.testJavaScript()">Tester JavaScript</button>
+
+                <div class="mt-3">
+                    <p>Statut des fonctionnalités JavaScript :</p>
+                    <ul id="jsStatusList" class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            JavaScript de base
+                            <span id="jsBasicStatus" class="badge bg-secondary">En attente</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Bootstrap
+                            <span id="bootstrapStatus" class="badge bg-secondary">En attente</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Fonctionnalités personnalisées
+                            <span id="customJsStatus" class="badge bg-secondary">En attente</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button id="runDiagnosticButton" class="btn btn-info text-white">Exécuter un diagnostic complet</button>
+            </div>
+        </div>
+
+        <script>
+            // Update status indicators when the page loads
+            document.addEventListener('DOMContentLoaded', function() {
+                // Check basic JavaScript
+                try {
+                    document.getElementById('jsBasicStatus').textContent = 'Fonctionnel';
+                    document.getElementById('jsBasicStatus').className = 'badge bg-success';
+                } catch (e) {
+                    // This won't execute if JavaScript isn't working at all
+                }
+
+                // Check Bootstrap
+                try {
+                    if (typeof bootstrap !== 'undefined') {
+                        document.getElementById('bootstrapStatus').textContent = 'Chargé';
+                        document.getElementById('bootstrapStatus').className = 'badge bg-success';
+                    } else {
+                        document.getElementById('bootstrapStatus').textContent = 'Non chargé';
+                        document.getElementById('bootstrapStatus').className = 'badge bg-danger';
+                    }
+                } catch (e) {
+                    console.error('Error checking Bootstrap:', e);
+                }
+
+                // Check custom JS functionality
+                try {
+                    if (typeof initializeViewToggle === 'function' && 
+                        typeof makeCardsClickable === 'function' && 
+                        typeof highlightCurrentNavItem === 'function') {
+                        document.getElementById('customJsStatus').textContent = 'Disponible';
+                        document.getElementById('customJsStatus').className = 'badge bg-success';
+                    } else {
+                        document.getElementById('customJsStatus').textContent = 'Incomplet';
+                        document.getElementById('customJsStatus').className = 'badge bg-warning';
+                    }
+                } catch (e) {
+                    document.getElementById('customJsStatus').textContent = 'Erreur';
+                    document.getElementById('customJsStatus').className = 'badge bg-danger';
+                    console.error('Error checking custom JS:', e);
+                }
+            });
+
+            // Set up diagnostic button
+            document.getElementById('runDiagnosticButton').addEventListener('click', function() {
+                try {
+                    alert('Diagnostic en cours...\n\nVérification des fonctionnalités JavaScript de base et personnalisées.\n\nConsultez la console du navigateur (F12) pour plus de détails.');
+
+                    console.log('=== DIAGNOSTIC JAVASCRIPT ===');
+                    console.log('Date et heure: ' + new Date().toISOString());
+                    console.log('User Agent: ' + navigator.userAgent);
+                    console.log('URL: ' + window.location.href);
+
+                    console.log('\n=== VÉRIFICATION DES OBJETS ===');
+                    console.log('window.bootstrap: ' + (typeof bootstrap !== 'undefined'));
+                    console.log('window.jQuery: ' + (typeof jQuery !== 'undefined'));
+                    console.log('initializeViewToggle: ' + (typeof initializeViewToggle === 'function'));
+                    console.log('makeCardsClickable: ' + (typeof makeCardsClickable === 'function'));
+                    console.log('highlightCurrentNavItem: ' + (typeof highlightCurrentNavItem === 'function'));
+
+                    console.log('\n=== VÉRIFICATION DES ÉLÉMENTS DOM ===');
+                    console.log('view-toggle-group: ' + document.querySelectorAll('.view-toggle-group').length);
+                    console.log('entity-card: ' + document.querySelectorAll('.entity-card').length);
+                    console.log('navbar-nav .nav-link: ' + document.querySelectorAll('.navbar-nav .nav-link').length);
+
+                    console.log('\n=== FIN DU DIAGNOSTIC ===');
+
+                    alert('Diagnostic terminé. Consultez la console du navigateur pour les résultats.');
+                } catch (e) {
+                    alert('Erreur lors du diagnostic: ' + e.message);
+                    console.error('Diagnostic error:', e);
+                }
+            });
+        </script>
     </div>
 </body>
 </html>

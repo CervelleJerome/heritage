@@ -5,6 +5,97 @@ body {
     padding-bottom: 20px;
 }
 
+/* View toggle button styles */
+.view-toggle-group {
+    margin-bottom: 1rem;
+}
+
+.view-toggle-btn {
+    border-color: #dee2e6;
+    background-color: #f8f9fa;
+    color: #6c757d;
+}
+
+.view-toggle-btn.active {
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0d6efd;
+}
+
+/* Card view styles */
+.entity-card {
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.entity-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-color: #0d6efd;
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+.entity-card .card-footer {
+    background-color: transparent;
+}
+
+/* Add "Click to edit" indicator to all entity card headers */
+.entity-card .card-header {
+    position: relative;
+}
+
+.entity-card .card-header::after {
+    content: "Cliquer pour modifier";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.entity-card:hover .card-header::after {
+    opacity: 1;
+}
+
+/* Entity-specific card styles */
+.entity-card.enseignant-card {
+    border-color: #0d6efd;
+}
+
+.entity-card.enseignant-card .card-header {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.entity-card.cours-card {
+    border-color: #0d6efd;
+}
+
+.entity-card.cours-card .card-header {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.entity-card.etudiant-card {
+    border-color: #198754;
+}
+
+.entity-card.etudiant-card .card-header {
+    background-color: #198754;
+    color: white;
+}
+
+.entity-card.personnel-card {
+    border-color: #dc3545;
+}
+
+.entity-card.personnel-card .card-header {
+    background-color: #dc3545;
+    color: white;
+}
+
 /* Style for the jumbotron (Bootstrap 5 doesn't have jumbotron) */
 .jumbotron {
     padding: 2rem 1rem;

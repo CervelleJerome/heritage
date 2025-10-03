@@ -75,6 +75,22 @@
                         </ul>
                     </li>
 
+                    <!-- Cours Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="coursDropdown" role="button" 
+                           data-bs-toggle="dropdown" aria-expanded="false"
+                           th:classappend="${request.requestURI.contains('/cours') ? 'active enseignant-color' : ''}">
+                            <i class="bi bi-book-half" th:classappend="${request.requestURI.contains('/cours') ? 'enseignant-color' : ''}"></i> 
+                            <span th:classappend="${request.requestURI.contains('/cours') ? 'enseignant-color' : ''}">Cours</span>
+                        </a>
+                        <ul class="dropdown-menu shadow-sm" aria-labelledby="coursDropdown">
+                            <li><a class="dropdown-item" th:href="@{/cours}"><i class="bi bi-list"></i> Liste des cours</a></li>
+                            <li><a class="dropdown-item" th:href="@{/cours/new}"><i class="bi bi-plus-circle"></i> Ajouter un cours</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-text"></i> Rapports</a></li>
+                        </ul>
+                    </li>
+
                     <!-- Dashboard Link -->
                     <li class="nav-item">
                         <a class="nav-link" href="#">
